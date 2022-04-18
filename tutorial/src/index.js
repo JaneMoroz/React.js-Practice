@@ -4,18 +4,9 @@ import ReactDOM from "react-dom/client";
 // CSS
 import "./index.css";
 
-// Setup vars
-const firstBook = {
-  author: "Marilyn Sadler",
-  title: "It's Not Easy Being a Bunny",
-  img: "https://images-na.ssl-images-amazon.com/images/I/81WZ6QvGZ2L.jpg",
-};
+import { books } from "./books";
 
-const secondBook = {
-  author: "Shannon Bream",
-  title: "The Mothers and Daughters of the Bible Speak",
-  img: "https://images-na.ssl-images-amazon.com/images/I/81DSi4ECwyL.jpg",
-};
+import Book from "./Book";
 
 /////////////////////////////////////////////////////
 // stateless functional component
@@ -60,29 +51,12 @@ const secondBook = {
 function BookList() {
   return (
     <section className="booklist">
-      <Book
-        img={firstBook.img}
-        title={firstBook.title}
-        author={firstBook.author}
-      />
-      <Book
-        img={secondBook.img}
-        title={secondBook.title}
-        author={secondBook.author}
-      />
+      {books.map((book) => {
+        return <Book key={book.id} {...book}></Book>;
+      })}
     </section>
   );
 }
-
-const Book = (props) => {
-  return (
-    <article className="book">
-      <img src={props.img} />
-      <h1>{props.title}</h1>
-      <h4>{props.author}</h4>
-    </article>
-  );
-};
 
 // const Image = () => (
 //   <img src="https://images-na.ssl-images-amazon.com/images/I/81WZ6QvGZ2L.jpg" />
